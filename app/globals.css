@@ -24,7 +24,8 @@
    ============================================================ */
 @layer base {
   html {
-    scroll-behavior: auto; /* Lenis handles smooth scroll */
+    scroll-behavior: auto;
+    /* Lenis handles smooth scroll */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -34,16 +35,19 @@
     background-color: var(--color-primary);
     color: var(--color-vss-white);
     overflow-x: hidden;
-    cursor: none; /* Custom cursor active */
+    cursor: none;
+    /* Custom cursor active */
   }
 
   /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
   }
+
   ::-webkit-scrollbar-track {
     background: var(--color-primary);
   }
+
   ::-webkit-scrollbar-thumb {
     background: var(--color-secondary);
     border-radius: 3px;
@@ -71,6 +75,7 @@
   .clip-inset-full {
     clip-path: inset(100% 0 0 0);
   }
+
   .clip-inset-none {
     clip-path: inset(0% 0 0 0);
   }
@@ -80,6 +85,7 @@
     position: relative;
     display: inline-block;
   }
+
   .link-underline::after {
     content: '';
     position: absolute;
@@ -90,6 +96,7 @@
     background: currentColor;
     transition: width 0.4s var(--ease-cinema);
   }
+
   .link-underline:hover::after {
     width: 100%;
   }
@@ -110,6 +117,7 @@
     cursor: pointer;
     transition: background 0.3s ease, color 0.3s ease;
   }
+
   .btn-primary:hover {
     background: #fff;
     color: var(--color-primary);
@@ -130,6 +138,7 @@
     cursor: pointer;
     transition: background 0.3s ease;
   }
+
   .btn-outline:hover {
     background: rgba(248, 249, 250, 0.1);
   }
@@ -147,12 +156,16 @@
    ANIMATIONS
    ============================================================ */
 @keyframes marquee {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .animate-marquee {
   animation: marquee 28s linear infinite;
   will-change: transform;
 }
-
