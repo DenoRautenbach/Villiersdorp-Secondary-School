@@ -1,36 +1,112 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Villiersdorp Secondary School — Website
 
-## Getting Started
+Production-ready school website built with **Next.js 16**, **Sanity CMS v3**, **Framer Motion**, **GSAP**, and **Lenis smooth scroll**.
 
-First, run the development server:
+## 🚀 Getting Started
+
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Configure environment variables
+
+Copy `.env.local` and fill in your Sanity project details:
+
+```bash
+NEXT_PUBLIC_SANITY_PROJECT_ID="your_project_id"
+NEXT_PUBLIC_SANITY_DATASET="production"
+NEXT_PUBLIC_SANITY_API_VERSION="2024-01-01"
+SANITY_API_READ_TOKEN="your_read_token"
+SANITY_REVALIDATE_SECRET="your_webhook_secret"
+NEXT_PUBLIC_SITE_URL="https://your-domain.co.za"
+```
+
+### 3. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+villiersdorp-high/
+├── app/
+│   ├── (site)/          # Public-facing routes
+│   ├── (studio)/        # Sanity Studio at /admin
+│   └── api/             # Revalidation + data endpoints
+├── components/
+│   ├── global/          # Navbar, Footer, Cursor, SmoothScroll
+│   ├── home/            # Hero, Stats, About, Marquee, News
+│   └── shared/          # AnimatedText, ParallaxImage
+├── lib/
+│   ├── sanity/          # Client, queries, image builder
+│   └── utils.ts
+└── sanity/
+    └── schemas/         # CMS content models
+```
 
-## Learn More
+## 🎨 Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+| Layer | Technology |
+|-------|-----------|
+| Framework | Next.js 16 (App Router) |
+| CMS | Sanity v3 (embedded Studio at `/admin`) |
+| Animations | Framer Motion + GSAP |
+| Smooth Scroll | Lenis |
+| Styling | Tailwind CSS v4 (CSS-first config) |
+| Fonts | `next/font/google` — Playfair Display + Inter |
+| Icons | Lucide React |
+| Language | TypeScript |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🖥️ Pages
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Route | Description |
+|-------|-------------|
+| `/` | Homepage: Preloader, Hero, Stats, About, Marquee, News |
+| `/about` | School history, vision, values, timeline |
+| `/academics` | Subject catalogue by department |
+| `/academics/[slug]` | Dynamic subject page |
+| `/news` | News & announcements listing |
+| `/news/[slug]` | Full article page |
+| `/contact` | Contact form + map |
+| `/admin` | Sanity Studio (CMS) |
 
-## Deploy on Vercel
+## 📡 Sanity CMS
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Access the embedded Studio at `/admin` once your project ID is configured.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Content types:**
+- `subject` — Academic subjects
+- `news` — News & announcements  
+- `staff` — Staff members
+- `blockContent` — Rich text (Portable Text)
+- `page` — General pages
+
+### ISR Webhook Setup
+
+In [Sanity Studio → API → Webhooks](https://sanity.io/manage):
+
+- URL: `https://your-domain.co.za/api/revalidate?secret=YOUR_SECRET`
+- Trigger on: create, update, delete
+
+## 🚢 Deployment (Vercel)
+
+1. Push to GitHub
+2. Import project in [Vercel Dashboard](https://vercel.com)
+3. Add all environment variables
+4. Deploy
+5. Add your Vercel URL to Sanity CORS Origins
+
+## 🎨 Brand Colors
+
+| Name | Hex |
+|------|-----|
+| Primary (Navy) | `#172b66` |
+| Primary Light | `#223f99` |
+| Secondary (Red) | `#fd1b3d` |
+| Accent (Blush) | `#F8DFE7` |

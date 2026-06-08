@@ -1,15 +1,11 @@
 import type { Metadata } from 'next';
 import { Playfair_Display, Inter } from 'next/font/google';
-import dynamic from 'next/dynamic';
 import Navbar from '@/components/global/Navbar';
 import Footer from '@/components/global/Footer';
 import SmoothScroll from '@/components/global/SmoothScroll';
 import SchemaOrg from '@/components/global/SchemaOrg';
+import CursorWrapper from '@/components/global/CursorWrapper';
 import '@/app/globals.css';
-
-const CustomCursor = dynamic(() => import('@/components/global/CustomCursor'), {
-  ssr: false,
-});
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -57,7 +53,7 @@ export default function SiteLayout({
         <SchemaOrg />
       </head>
       <body style={{ fontFamily: 'var(--font-inter, Inter, system-ui, sans-serif)' }}>
-        <CustomCursor />
+        <CursorWrapper />
         <SmoothScroll>
           <Navbar />
           <main id="main-content">{children}</main>

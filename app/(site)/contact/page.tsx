@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import ContactForm from '@/components/contact/ContactForm';
 
 export const metadata: Metadata = {
   title: 'Contact Us',
@@ -102,75 +103,7 @@ export default function ContactPage() {
           {/* Enquiry form */}
           <div>
             <h2 className="font-serif text-3xl text-white mb-10">Send an Enquiry</h2>
-            <form
-              id="contact-form"
-              className="space-y-6"
-              onSubmit={(e) => e.preventDefault()}
-            >
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="contact-name" className="block text-white/50 text-xs uppercase tracking-widest mb-2">
-                    Full Name *
-                  </label>
-                  <input
-                    id="contact-name"
-                    type="text"
-                    required
-                    className="w-full bg-transparent border border-white/20 text-white px-4 py-3 text-sm focus:outline-none focus:border-[#fd1b3d] transition-colors placeholder-white/20"
-                    placeholder="Jane Smith"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="contact-email" className="block text-white/50 text-xs uppercase tracking-widest mb-2">
-                    Email *
-                  </label>
-                  <input
-                    id="contact-email"
-                    type="email"
-                    required
-                    className="w-full bg-transparent border border-white/20 text-white px-4 py-3 text-sm focus:outline-none focus:border-[#fd1b3d] transition-colors placeholder-white/20"
-                    placeholder="jane@example.com"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="contact-subject" className="block text-white/50 text-xs uppercase tracking-widest mb-2">
-                  Subject
-                </label>
-                <select
-                  id="contact-subject"
-                  className="w-full bg-[#172b66] border border-white/20 text-white px-4 py-3 text-sm focus:outline-none focus:border-[#fd1b3d] transition-colors"
-                >
-                  <option value="">Select a subject…</option>
-                  <option value="admissions">Admissions</option>
-                  <option value="academics">Academic Enquiry</option>
-                  <option value="general">General Information</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-
-              <div>
-                <label htmlFor="contact-message" className="block text-white/50 text-xs uppercase tracking-widest mb-2">
-                  Message *
-                </label>
-                <textarea
-                  id="contact-message"
-                  required
-                  rows={6}
-                  className="w-full bg-transparent border border-white/20 text-white px-4 py-3 text-sm focus:outline-none focus:border-[#fd1b3d] transition-colors placeholder-white/20 resize-none"
-                  placeholder="How can we help you?"
-                />
-              </div>
-
-              <button
-                type="submit"
-                id="contact-submit"
-                className="btn-primary w-full justify-center"
-              >
-                Send Message
-              </button>
-            </form>
+            <ContactForm />
           </div>
         </div>
       </div>
