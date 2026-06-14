@@ -1,69 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
-
-interface NewsItem {
-  _id: string;
-  title: string;
-  slug: string;
-  category: string;
-  publishedAt: string;
-  excerpt: string;
-  imageUrl: string | null;
-}
-
-const fallbackNews: NewsItem[] = [
-  {
-    _id: '1',
-    title: 'Grade 12 Class of 2025 Achieves Outstanding Matric Results',
-    slug: 'matric-results-2025',
-    category: 'Achievement',
-    publishedAt: '2026-01-15T00:00:00Z',
-    excerpt: 'Villiersdorp Secondary School celebrates a 98% matric pass rate for the class of 2025, with 14 distinctions awarded.',
-    imageUrl: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=800',
-  },
-  {
-    _id: '2',
-    title: 'Annual Cultural Festival Returns with Record Participation',
-    slug: 'cultural-festival-2025',
-    category: 'Arts & Culture',
-    publishedAt: '2025-11-02T00:00:00Z',
-    excerpt: "This year's cultural festival saw participation from all 1,200 learners, showcasing the rich diversity of our school community.",
-    imageUrl: 'https://images.unsplash.com/photo-1607453998774-d533f65dac99?q=80&w=800',
-  },
-  {
-    _id: '3',
-    title: 'New Science Lab Opening Elevates STEM Programme',
-    slug: 'new-science-lab',
-    category: 'Academics',
-    publishedAt: '2025-09-18T00:00:00Z',
-    excerpt: 'Thanks to community partnerships, our state-of-the-art science laboratory opened this term, benefiting all Grade 10–12 science learners.',
-    imageUrl: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=800',
-  },
-];
+import { staticNews } from '@/lib/staticData';
 
 export default function NewsPreview() {
-  const [articles, setArticles] = useState<NewsItem[]>(fallbackNews);
-
-  useEffect(() => {
-    // Attempt to fetch from Sanity API route once on mount
-    const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
-    if (!projectId || projectId === 'your_project_id_here') return;
-
-    fetch('/api/news-preview')
-      .then((r) => r.json())
-      .then((data: NewsItem[]) => {
-        if (Array.isArray(data) && data.length > 0) setArticles(data);
-      })
-      .catch(() => {
-        // Keep fallback
-      });
-  }, []);
+  const articles = staticNews.slice(0, 3);
 
   return (
     <section

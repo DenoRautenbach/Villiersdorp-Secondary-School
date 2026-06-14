@@ -3,88 +3,39 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, Mail } from 'lucide-react';
-import { client } from '@/lib/sanity/client';
-import { SUBJECT_BY_SLUG_QUERY, ALL_SUBJECT_SLUGS_QUERY } from '@/lib/sanity/queries';
-
-interface Teacher {
-  name: string;
-  role: string;
-  email: string | null;
-  photoUrl: string | null;
-}
-
-interface Subject {
-  _id: string;
-  title: string;
-  slug: string;
-  department: string;
-  description: string;
-  imageUrl: string | null;
-  gradeLevel: string[];
-  teacher: Teacher | null;
-}
+import { staticSubjects } from '@/lib/staticData';
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  try {
-    const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
-    if (!projectId || projectId === 'your_project_id_here') return [];
-    const slugs = await client.fetch<string[]>(ALL_SUBJECT_SLUGS_QUERY);
-    return slugs.map((slug) => ({ slug }));
-  } catch {
-    return [];
-  }
+  return staticSubjects.map((subject) => ({
+    slug: subject.slug,
+  }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  try {
-    const subject = await client.fetch<Subject | null>(SUBJECT_BY_SLUG_QUERY, { slug });
-    if (!subject) return { title: 'Subject Not Found' };
-    return {
-      title: subject.title,
+  const subject = staticSubjects.find((s) => s.slug === slug);
+  if (!subject) return { title: 'Subject Not Found' };
+  
+  return {
+    title: subject.title,
+    description: subject.description,
+    openGraph: {
+      title: `${subject.title} | Villiersdorp Secondary School`,
       description: subject.description,
-      openGraph: {
-        title: `${subject.title} | Villiersdorp Secondary School`,
-        description: subject.description,
-        images: subject.imageUrl ? [{ url: subject.imageUrl }] : [],
-      },
-    };
-  } catch {
-    return { title: 'Subject' };
-  }
+      images: subject.imageUrl ? [{ url: subject.imageUrl }] : [],
+    },
+  };
 }
 
 export default async function SubjectPage({ params }: Props) {
   const { slug } = await params;
-
-  let subject: Subject | null = null;
-
-  try {
-    const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
-    if (projectId && projectId !== 'your_project_id_here') {
-      subject = await client.fetch<Subject | null>(SUBJECT_BY_SLUG_QUERY, { slug });
-    }
-  } catch {
-    // falls through to notFound
-  }
+  const subject = staticSubjects.find((s) => s.slug === slug);
 
   if (!subject) {
-    // Provide a demo view in development
-    if (process.env.NODE_ENV === 'development') {
-      return (
-        <div className="bg-[#172b66] min-h-screen pt-40 max-w-4xl mx-auto px-6 md:px-10">
-          <Link href="/academics" className="inline-flex items-center gap-2 text-[#fd1b3d] text-sm mb-8 hover:opacity-70 transition-opacity">
-            <ArrowLeft size={14} /> Back to Academics
-          </Link>
-          <p className="text-white/60 text-lg">Subject &quot;{slug}&quot; not found in Sanity yet.</p>
-          <p className="text-white/40 text-sm mt-2">Add content in Sanity Studio at <code className="text-[#fd1b3d]">/admin</code></p>
-        </div>
-      );
-    }
     notFound();
   }
 
@@ -123,9 +74,15 @@ export default async function SubjectPage({ params }: Props) {
         </Link>
 
         {subject.description && (
-          <p className="text-white/70 text-xl leading-relaxed mb-12 font-light">
+          <p className="text-white/70 text-xl leading-relaxed mb-8 font-light">
             {subject.description}
           </p>
+        )}
+
+        {subject.content && (
+          <div className="text-white/60 leading-relaxed space-y-6 text-base font-light mb-12 whitespace-pre-line">
+            {subject.content}
+          </div>
         )}
 
         {/* Teacher card */}

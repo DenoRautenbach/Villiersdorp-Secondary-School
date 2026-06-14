@@ -24,8 +24,8 @@ export default function Hero() {
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-[#172b66]/50 to-[#172b66] z-10" />
         <Image
-          src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop"
-          alt="Villiersdorp Secondary School campus"
+          src="/bgs/Villiersdorp_oos.jpg"
+          alt="Villiersdorp Secondary School staff"
           fill
           priority
           className="object-cover opacity-50"
@@ -43,7 +43,7 @@ export default function Hero() {
         {/* Eyebrow */}
         <div className="overflow-hidden mb-6">
           <motion.p
-            className="text-[#fd1b3d] tracking-[0.4em] uppercase text-xs md:text-sm font-medium"
+            className="text-[#ff4d6d] tracking-[0.4em] uppercase text-xs md:text-sm font-medium"
             initial={{ y: 60, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.8, ease: 'easeOut' }}
@@ -62,7 +62,7 @@ export default function Hero() {
           >
             A Legacy of
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fd1b3d] to-[#F8DFE7]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d6d] to-[#F8DFE7]">
               Brilliance.
             </span>
           </motion.h1>
@@ -91,14 +91,14 @@ export default function Hero() {
           <Link
             href="/contact"
             id="hero-apply-btn"
-            className="btn-primary group"
+            className="btn-primary group min-w-[44px] min-h-[44px]"
           >
             Apply Now <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
           </Link>
           <Link
             href="/about"
             id="hero-story-btn"
-            className="btn-outline"
+            className="btn-outline min-w-[44px] min-h-[44px]"
           >
             Discover Our Story
           </Link>

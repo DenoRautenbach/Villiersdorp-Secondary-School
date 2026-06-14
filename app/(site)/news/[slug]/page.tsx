@@ -3,83 +3,42 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
-import { client } from '@/lib/sanity/client';
-import { NEWS_BY_SLUG_QUERY, ALL_NEWS_SLUGS_QUERY } from '@/lib/sanity/queries';
+import { staticNews } from '@/lib/staticData';
 import { formatDate } from '@/lib/utils';
-
-interface NewsArticle {
-  _id: string;
-  title: string;
-  slug: string;
-  category: string;
-  publishedAt: string;
-  excerpt: string;
-  imageUrl: string | null;
-  author: { name: string; role: string; photoUrl: string | null } | null;
-}
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  try {
-    const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
-    if (!projectId || projectId === 'your_project_id_here') return [];
-    const slugs = await client.fetch<string[]>(ALL_NEWS_SLUGS_QUERY);
-    return slugs.map((slug) => ({ slug }));
-  } catch {
-    return [];
-  }
+  return staticNews.map((article) => ({
+    slug: article.slug,
+  }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  try {
-    const article = await client.fetch<NewsArticle | null>(NEWS_BY_SLUG_QUERY, { slug });
-    if (!article) return { title: 'Article Not Found' };
-    return {
-      title: article.title,
+  const article = staticNews.find((n) => n.slug === slug);
+  if (!article) return { title: 'Article Not Found' };
+  
+  return {
+    title: article.title,
+    description: article.excerpt,
+    openGraph: {
+      title: `${article.title} | VSS`,
       description: article.excerpt,
-      openGraph: {
-        title: `${article.title} | VSS`,
-        description: article.excerpt,
-        images: article.imageUrl ? [{ url: article.imageUrl }] : [],
-        type: 'article',
-        publishedTime: article.publishedAt,
-      },
-    };
-  } catch {
-    return { title: 'News' };
-  }
+      images: article.imageUrl ? [{ url: article.imageUrl }] : [],
+      type: 'article',
+      publishedTime: article.publishedAt,
+    },
+  };
 }
 
 export default async function NewsArticlePage({ params }: Props) {
   const { slug } = await params;
-
-  let article: NewsArticle | null = null;
-
-  try {
-    const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
-    if (projectId && projectId !== 'your_project_id_here') {
-      article = await client.fetch<NewsArticle | null>(NEWS_BY_SLUG_QUERY, { slug });
-    }
-  } catch {
-    // falls through
-  }
+  const article = staticNews.find((n) => n.slug === slug);
 
   if (!article) {
-    if (process.env.NODE_ENV === 'development') {
-      return (
-        <div className="bg-[#172b66] min-h-screen pt-40 max-w-3xl mx-auto px-6 md:px-10">
-          <Link href="/news" className="inline-flex items-center gap-2 text-[#fd1b3d] text-sm mb-8 hover:opacity-70 transition-opacity">
-            <ArrowLeft size={14} /> Back to News
-          </Link>
-          <p className="text-white/60 text-lg">Article &quot;{slug}&quot; not found in Sanity yet.</p>
-          <p className="text-white/40 text-sm mt-2">Add content in Sanity Studio at <code className="text-[#fd1b3d]">/admin</code></p>
-        </div>
-      );
-    }
     notFound();
   }
 
@@ -133,9 +92,12 @@ export default async function NewsArticlePage({ params }: Props) {
           </div>
         )}
 
-        <p className="text-white/50 text-sm">
-          Full article content will render here once connected to Sanity CMS.
-        </p>
+        {/* Article Body */}
+        {article.content && (
+          <div className="text-white/60 leading-relaxed space-y-6 text-base font-light whitespace-pre-line">
+            {article.content}
+          </div>
+        )}
       </article>
     </div>
   );

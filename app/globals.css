@@ -13,7 +13,7 @@
   --color-vss-white: #F8F9FA;
   --color-muted: rgba(248, 249, 250, 0.6);
 
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-sans: var(--font-open-sans), 'Open Sans', system-ui, sans-serif;
   --font-serif: 'Playfair Display', Georgia, serif;
 
   --ease-cinema: cubic-bezier(0.76, 0, 0.24, 1);
@@ -56,6 +56,17 @@
   ::selection {
     background: var(--color-secondary);
     color: #fff;
+  }
+
+  /* Accessibility: Ensure all focusable elements have a highly visible outline */
+  :focus {
+    outline: none;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+    border-radius: 2px;
   }
 }
 

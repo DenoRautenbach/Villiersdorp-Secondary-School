@@ -29,11 +29,11 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <>
+    <header className="fixed top-0 left-0 w-full z-[100] pointer-events-none">
       {/* Main Navbar Bar */}
       <nav
         id="main-navbar"
-        className="fixed top-0 w-full z-50 px-6 md:px-10 py-6 md:py-8 flex justify-between items-center mix-blend-difference"
+        className="w-full px-6 md:px-10 py-6 md:py-8 flex justify-between items-center mix-blend-difference pointer-events-auto"
         aria-label="Main navigation"
       >
         <Link
@@ -50,6 +50,7 @@ export default function Navbar() {
           className="text-white flex items-center gap-2 uppercase tracking-widest text-xs font-medium hover:text-[#fd1b3d] transition-colors"
           aria-label="Open navigation menu"
           aria-expanded={isOpen}
+          aria-controls="nav-overlay"
         >
           Menu <Menu size={18} />
         </button>
@@ -63,7 +64,7 @@ export default function Navbar() {
             role="dialog"
             aria-modal="true"
             aria-label="Navigation menu"
-            className="fixed inset-0 bg-[#172b66] z-[150] flex flex-col justify-center px-8 md:px-20 lg:px-32"
+            className="fixed inset-0 bg-[#172b66] z-[150] flex flex-col justify-center px-8 md:px-20 lg:px-32 pointer-events-auto"
             initial="closed"
             animate="open"
             exit="closed"
@@ -123,6 +124,6 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </header>
   );
 }
