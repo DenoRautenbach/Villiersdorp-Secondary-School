@@ -1,17 +1,13 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { MapPin, Phone, Mail } from 'lucide-react';
 
 const footerLinks = {
   explore: [
     { label: 'About Us', href: '/about' },
     { label: 'Academics', href: '/academics' },
-    { label: 'School Life', href: '/school-life' },
     { label: 'News & Events', href: '/news' },
     { label: 'Contact', href: '/contact' },
-  ],
-  legal: [
-    { label: 'Privacy Policy', href: '/privacy' },
-    { label: 'Terms of Use', href: '/terms' },
   ],
 };
 
@@ -25,15 +21,23 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
           <div className="lg:col-span-2">
+            <Image
+              src="/logo-light.png"
+              alt="Villiersdorp Secondary School crest"
+              width={496}
+              height={503}
+              className="h-24 w-auto mb-6"
+            />
             <h4 className="font-serif text-3xl text-white mb-4 leading-tight">
               Villiersdorp<br />Secondary School
             </h4>
+            <p className="text-white/70 text-sm font-semibold mb-3">Villiersdorp Sekondêr</p>
             <p className="text-white/50 text-sm leading-relaxed max-w-xs">
-              Cultivating academic excellence, character, and community pride in
-              the heart of the Western Cape Overberg.
+              A public, no-fee high school for Grades 8–12 in Villiersdorp,
+              Overberg district, Western Cape.
             </p>
             <p className="mt-4 text-[#fd1b3d] font-serif italic text-sm">
-              &ldquo;Strive for the Highest&rdquo;
+              Build with Pride · Bou met Trots · Sakhangeqhayiya
             </p>
           </div>
 
@@ -65,23 +69,23 @@ export default function Footer() {
               <li className="flex items-start gap-3 text-white/60 text-sm">
                 <MapPin size={15} className="mt-0.5 flex-shrink-0 text-[#fd1b3d]" />
                 <span>
-                  Church Street, Villiersdorp,<br />
-                  Western Cape, 7170
+                  Serruriastraat, Villiersdorp, 6848<br />
+                  Posbus 347, Villiersdorp, 6848
                 </span>
               </li>
               <li className="flex items-center gap-3 text-white/60 text-sm">
                 <Phone size={15} className="flex-shrink-0 text-[#fd1b3d]" />
-                <a href="tel:+27288401111" className="hover:text-white transition-colors">
-                  +27 28 840 1111
+                <a href="tel:+27288401079" className="hover:text-white transition-colors">
+                  028 840 1079
                 </a>
               </li>
               <li className="flex items-center gap-3 text-white/60 text-sm">
                 <Mail size={15} className="flex-shrink-0 text-[#fd1b3d]" />
                 <a
-                  href="mailto:info@villiersdorphs.co.za"
+                  href="mailto:villiersec@hotmail.com"
                   className="hover:text-white transition-colors"
                 >
-                  info@villiersdorphs.co.za
+                  villiersec@hotmail.com
                 </a>
               </li>
             </ul>
@@ -93,17 +97,6 @@ export default function Footer() {
           <p className="text-white/30 text-xs uppercase tracking-widest">
             © {year} Villiersdorp Secondary School. All rights reserved.
           </p>
-          <div className="flex gap-6">
-            {footerLinks.legal.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-white/30 hover:text-white/70 text-xs uppercase tracking-widest transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
         </div>
       </div>
     </footer>

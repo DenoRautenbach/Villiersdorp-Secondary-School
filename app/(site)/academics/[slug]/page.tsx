@@ -47,6 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title: subject.title,
       description: subject.description,
+      alternates: { canonical: `/academics/${slug}` },
       openGraph: {
         title: `${subject.title} | Villiersdorp Secondary School`,
         description: subject.description,

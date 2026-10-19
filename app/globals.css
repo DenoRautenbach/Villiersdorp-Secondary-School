@@ -13,8 +13,9 @@
   --color-vss-white: #F8F9FA;
   --color-muted: rgba(248, 249, 250, 0.6);
 
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-serif: 'Playfair Display', Georgia, serif;
+  /* Headings use .font-serif (kept for compatibility) — now a friendly rounded sans */
+  --font-sans: var(--font-body), 'Nunito', system-ui, sans-serif;
+  --font-serif: var(--font-heading), 'Poppins', system-ui, sans-serif;
 
   --ease-cinema: cubic-bezier(0.76, 0, 0.24, 1);
 }
@@ -64,7 +65,9 @@
    ============================================================ */
 @layer utilities {
   .font-serif {
-    font-family: var(--font-serif);
+    font-family: var(--font-heading), 'Poppins', system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
   }
 
   .text-balance {
@@ -106,16 +109,21 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 1rem 2rem;
+    padding: 0.9rem 1.9rem;
     background: var(--color-secondary);
     color: #fff;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
+    font-size: 0.95rem;
+    font-weight: 700;
     border: none;
+    border-radius: 9999px;
+    box-shadow: 0 6px 18px -6px rgba(253, 27, 61, 0.6);
     cursor: pointer;
-    transition: background 0.3s ease, color 0.3s ease;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  }
+
+  .btn-primary:hover,
+  .btn-outline:hover {
+    transform: translateY(-2px);
   }
 
   .btn-primary:hover {
@@ -127,16 +135,15 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 1rem 2rem;
-    border: 1px solid rgba(248, 249, 250, 0.3);
+    padding: 0.9rem 1.9rem;
+    border: 2px solid rgba(248, 249, 250, 0.5);
+    border-radius: 9999px;
     color: var(--color-vss-white);
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
+    font-size: 0.95rem;
+    font-weight: 700;
     background: transparent;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.2s ease;
   }
 
   .btn-outline:hover {

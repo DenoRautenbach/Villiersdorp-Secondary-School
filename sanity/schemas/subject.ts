@@ -22,7 +22,7 @@ export default defineType({
       title: 'Department',
       type: 'string',
       options: {
-        list: ['Sciences', 'Humanities', 'Languages', 'Arts', 'Commerce', 'Technology'],
+        list: ['Languages', 'Mathematics', 'Sciences', 'Humanities', 'Commerce', 'Arts', 'Technology'],
       },
     }),
     defineField({

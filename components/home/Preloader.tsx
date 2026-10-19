@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 interface PreloaderProps {
   onComplete: () => void;
@@ -40,15 +41,31 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         {/* Noise texture */}
         <div className="absolute inset-0 noise-overlay pointer-events-none" />
 
+        <motion.div
+          className="mb-6"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+        >
+          <Image
+            src="/logo-light.png"
+            alt=""
+            width={496}
+            height={503}
+            priority
+            className="h-28 md:h-36 w-auto"
+          />
+        </motion.div>
+
         <div className="overflow-hidden mb-8">
-          <motion.h1
+          <motion.p
             className="font-serif text-4xl md:text-7xl text-white tracking-[0.25em] uppercase"
             initial={{ y: 120 }}
             animate={{ y: 0 }}
             transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
           >
             Villiersdorp
-          </motion.h1>
+          </motion.p>
         </div>
 
         <div className="overflow-hidden mb-8">

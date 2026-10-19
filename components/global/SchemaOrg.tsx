@@ -1,3 +1,5 @@
+import { siteUrl } from '@/lib/utils';
+
 /**
  * JSON-LD Structured Data for Villiersdorp Secondary School
  * Inject this in the root layout's <head> via next/script.
@@ -7,45 +9,53 @@ export default function SchemaOrgScript() {
     '@context': 'https://schema.org',
     '@type': 'HighSchool',
     name: 'Villiersdorp Secondary School',
-    alternateName: 'VSS',
-    url: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
-    logo: `${process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'}/logo.png`,
+    alternateName: ['VSS', 'Villiersdorp Sekondêr'],
+    url: siteUrl,
+    logo: `${siteUrl}/logo.png`,
+    image: `${siteUrl}/hero-staff.png`,
     description:
-      'Villiersdorp Secondary School is a public secondary school located in Villiersdorp, Western Cape, South Africa, committed to academic excellence and community growth.',
+      'Villiersdorp Secondary School (Villiersdorp Sekondêr) is a public high school for Grades 8–12 in Villiersdorp, Western Cape, South Africa.',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Church Street',
+      streetAddress: 'Serruriastraat',
       addressLocality: 'Villiersdorp',
       addressRegion: 'Western Cape',
-      postalCode: '7170',
+      postalCode: '6848',
       addressCountry: 'ZA',
     },
-    telephone: '+27288401111',
-    email: 'info@villiersdorphs.co.za',
-    foundingDate: '1952',
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'school office',
+      telephone: '+27288401079',
+      email: 'villiersec@hotmail.com',
+      availableLanguage: ['Afrikaans', 'English'],
+    },
+    email: 'villiersec@hotmail.com',
+    telephone: '+27288401079',
+    identifier: {
+      '@type': 'PropertyValue',
+      propertyID: 'EMIS',
+      value: '114333077',
+    },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: -33.9833,
-      longitude: 19.2833,
+      latitude: -33.986005,
+      longitude: 19.28128,
     },
     sameAs: [],
-    numberOfEmployees: {
-      '@type': 'QuantitativeValue',
-      minValue: 50,
+    employee: {
+      '@type': 'Person',
+      name: 'B Ockhuis',
+      jobTitle: 'Principal',
     },
     teaches: [
-      'Mathematics',
-      'Physical Sciences',
-      'Life Sciences',
       'English',
       'Afrikaans',
+      'Mathematical Literacy',
+      'Life Sciences',
       'History',
       'Geography',
       'Business Studies',
-      'Economics',
-      'Accounting',
-      'Visual Arts',
-      'Computer Applications Technology',
     ],
   };
 

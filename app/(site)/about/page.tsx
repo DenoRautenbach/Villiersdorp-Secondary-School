@@ -6,16 +6,26 @@ import AnimatedText from '@/components/shared/AnimatedText';
 export const metadata: Metadata = {
   title: 'About Us',
   description:
-    'Learn about Villiersdorp Secondary School — our history, vision, values, and the people who make our school a place of excellence and belonging.',
+    'Learn about Villiersdorp Secondary School, the high school in Villiersdorp, Western Cape — our history, vision, values, and the people who make our school a place of excellence and belonging.',
+  alternates: { canonical: '/about' },
 };
 
-const milestones = [
-  { year: '1952', event: 'School founded in Villiersdorp', eventAf: 'Skool gestig in Villiersdorp' },
-  { year: '1978', event: 'First purpose-built campus completed', eventAf: 'Eerste doelgeboude kampus voltooi' },
-  { year: '1995', event: 'Integration and new era of unity', eventAf: 'Integrasie en nuwe eenheid' },
-  { year: '2010', event: 'Provincial excellence award received', eventAf: 'Provinsiale uitnemendheidskommers ontvang' },
-  { year: '2019', event: 'New science & technology block opens', eventAf: 'Nuwe wetenskap- & tegnologieblok oop' },
-  { year: '2024', event: '98% Matric pass rate — highest ever', eventAf: '98% Matriekslaagkoers — hoogste ooit' },
+const facts = [
+  { label: 'Principal', labelAf: 'Skoolhoof', value: 'Mr B Ockhuis' },
+  { label: 'Grades', labelAf: 'Grade', value: 'Grade 8 – 12' },
+  { label: 'Learners (2025)', labelAf: 'Leerders', value: '921' },
+  { label: 'Educators', labelAf: 'Opvoeders', value: '28' },
+  { label: 'School Type', labelAf: 'Skooltipe', value: 'Public, co-educational day school' },
+  { label: 'Fees', labelAf: 'Skoolgeld', value: 'No-fee school (Quintile 3)' },
+  { label: 'Curriculum', labelAf: 'Kurrikulum', value: 'CAPS' },
+  { label: 'District', labelAf: 'Distrik', value: 'Overberg (Theewaterskloof Municipality)' },
+  { label: 'EMIS Number', labelAf: 'EMIS-nommer', value: '114333077' },
+];
+
+const matricResults = [
+  { year: '2025', wrote: 131, passed: 104, rate: '79.4%' },
+  { year: '2024', wrote: 166, passed: 137, rate: '82.5%' },
+  { year: '2023', wrote: 146, passed: 119, rate: '81.5%' },
 ];
 
 export default function AboutPage() {
@@ -76,9 +86,9 @@ export default function AboutPage() {
           <h2 className="font-serif text-3xl text-white mb-12 text-center">Our Core Values</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
-              { en: 'Excellence', af: 'Uitnemendheid' },
-              { en: 'Integrity', af: 'Integriteit' },
+              { en: 'Pride', af: 'Trots' },
               { en: 'Respect', af: 'Respek' },
+              { en: 'Integrity', af: 'Integriteit' },
               { en: 'Community', af: 'Gemeenskap' },
             ].map((value) => (
               <div key={value.en} className="p-6 border border-white/10 hover:border-[#fd1b3d]/40 transition-colors">
@@ -90,27 +100,55 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Timeline */}
+      {/* School at a glance */}
       <section className="py-24 max-w-7xl mx-auto px-6 md:px-10">
-        <h2 className="font-serif text-4xl md:text-5xl text-white mb-16">
-          Our History
+        <h2 className="font-serif text-4xl md:text-5xl text-white mb-4">
+          School at a Glance
         </h2>
-        <div className="space-y-0">
-          {milestones.map((m, i) => (
-            <div
-              key={m.year}
-              className="grid grid-cols-[80px_1fr] md:grid-cols-[120px_1fr] gap-6 md:gap-12 items-start border-b border-white/10 py-8"
-            >
-              <span className="font-serif text-[#fd1b3d] text-2xl md:text-3xl tabular-nums">
-                {m.year}
-              </span>
-              <div>
-                <p className="text-white text-base md:text-lg">{m.event}</p>
-                <p className="text-white/40 text-sm italic mt-1">{m.eventAf}</p>
-              </div>
+        <p className="text-white/40 italic mb-12">Skool in 'n neutedop</p>
+        <dl className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {facts.map((f) => (
+            <div key={f.label} className="p-6 rounded-2xl border border-white/10 bg-[#223f99]/20">
+              <dt className="text-white/50 text-sm mb-1">
+                {f.label} <span className="italic">/ {f.labelAf}</span>
+              </dt>
+              <dd className="text-white text-lg font-semibold">{f.value}</dd>
             </div>
           ))}
+        </dl>
+      </section>
+
+      {/* Matric results */}
+      <section className="pb-24 max-w-7xl mx-auto px-6 md:px-10">
+        <h2 className="font-serif text-4xl md:text-5xl text-white mb-4">
+          Matric Results
+        </h2>
+        <p className="text-white/40 italic mb-12">Matriekuitslae (NSC)</p>
+        <div className="overflow-x-auto rounded-2xl border border-white/10">
+          <table className="w-full text-left">
+            <thead className="bg-[#223f99]/40 text-white/70 text-sm">
+              <tr>
+                <th className="px-6 py-4 font-semibold">Year</th>
+                <th className="px-6 py-4 font-semibold">Wrote</th>
+                <th className="px-6 py-4 font-semibold">Passed</th>
+                <th className="px-6 py-4 font-semibold">Pass Rate</th>
+              </tr>
+            </thead>
+            <tbody>
+              {matricResults.map((r) => (
+                <tr key={r.year} className="border-t border-white/10 text-white">
+                  <td className="px-6 py-4 font-serif text-[#fd1b3d] text-xl">{r.year}</td>
+                  <td className="px-6 py-4 tabular-nums">{r.wrote}</td>
+                  <td className="px-6 py-4 tabular-nums">{r.passed}</td>
+                  <td className="px-6 py-4 tabular-nums font-semibold">{r.rate}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
+        <p className="text-white/40 text-sm mt-4">
+          Source: Department of Basic Education NSC results.
+        </p>
       </section>
     </div>
   );

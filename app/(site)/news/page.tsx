@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: 'News & Announcements',
   description:
     'Stay up to date with the latest news, events, achievements, and announcements from Villiersdorp Secondary School.',
+  alternates: { canonical: '/news' },
 };
 
 interface NewsItem {
@@ -24,10 +25,10 @@ interface NewsItem {
 }
 
 const fallbackNews: NewsItem[] = [
-  { _id: '1', title: 'Grade 12 Class of 2025 Achieves Outstanding Matric Results', slug: 'matric-results-2025', category: 'Achievement', publishedAt: '2026-01-15T00:00:00Z', excerpt: 'Villiersdorp Secondary School celebrates a 98% matric pass rate for the class of 2025, with 14 distinctions awarded.', imageUrl: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=800', author: null },
-  { _id: '2', title: 'Annual Cultural Festival Returns with Record Participation', slug: 'cultural-festival-2025', category: 'Arts & Culture', publishedAt: '2025-11-02T00:00:00Z', excerpt: "This year's cultural festival saw participation from all 1,200 learners.", imageUrl: 'https://images.unsplash.com/photo-1607453998774-d533f65dac99?q=80&w=800', author: null },
+  { _id: '1', title: 'Class of 2025 Matric Results', slug: 'matric-results-2025', category: 'Achievement', publishedAt: '2026-01-15T00:00:00Z', excerpt: '104 of our 131 Grade 12 candidates passed the 2025 National Senior Certificate exams — a 79.4% pass rate. Congratulations, matrics!', imageUrl: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=800', author: null },
+  { _id: '2', title: 'Annual Cultural Festival Returns with Record Participation', slug: 'cultural-festival-2025', category: 'Arts & Culture', publishedAt: '2025-11-02T00:00:00Z', excerpt: "This year's cultural festival saw participation from our 921 learners.", imageUrl: 'https://images.unsplash.com/photo-1607453998774-d533f65dac99?q=80&w=800', author: null },
   { _id: '3', title: 'New Science Lab Opens', slug: 'new-science-lab', category: 'Academics', publishedAt: '2025-09-18T00:00:00Z', excerpt: 'Our state-of-the-art science laboratory opened this term, benefiting all Grade 10–12 science learners.', imageUrl: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=800', author: null },
-  { _id: '4', title: 'U16 Rugby Team Reaches Western Cape Finals', slug: 'u16-rugby-finals', category: 'Sports', publishedAt: '2025-08-10T00:00:00Z', excerpt: 'Our Under-16 rugby team has qualified for the Western Cape School Sports finals for the first time in school history.', imageUrl: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=800', author: null },
+  { _id: '4', title: 'U16 Rugby Team Reaches Western Cape Finals', slug: 'u16-rugby-finals', category: 'Sports', publishedAt: '2025-08-10T00:00:00Z', excerpt: 'Our Under-16 rugby team has qualified for the Western Cape School Sports finals for the first time in school history.', imageUrl: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=800', author: null },
   { _id: '5', title: 'School Garden Project Wins Community Award', slug: 'garden-award', category: 'Community', publishedAt: '2025-07-22T00:00:00Z', excerpt: 'Our learner-run vegetable garden project received the Overberg Community Excellence Award this month.', imageUrl: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=800', author: null },
   { _id: '6', title: 'Term 3 Examination Timetable Released', slug: 'term-3-timetable', category: 'Announcement', publishedAt: '2025-06-30T00:00:00Z', excerpt: 'The Term 3 examination timetable is now available. All learners should check the schedule on the school notice board.', imageUrl: null, author: null },
 ];

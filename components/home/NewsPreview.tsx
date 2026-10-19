@@ -20,11 +20,11 @@ interface NewsItem {
 const fallbackNews: NewsItem[] = [
   {
     _id: '1',
-    title: 'Grade 12 Class of 2025 Achieves Outstanding Matric Results',
+    title: 'Class of 2025 Matric Results',
     slug: 'matric-results-2025',
     category: 'Achievement',
     publishedAt: '2026-01-15T00:00:00Z',
-    excerpt: 'Villiersdorp Secondary School celebrates a 98% matric pass rate for the class of 2025, with 14 distinctions awarded.',
+    excerpt: '104 of our 131 Grade 12 candidates passed the 2025 National Senior Certificate exams — a 79.4% pass rate. Congratulations, matrics!',
     imageUrl: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=800',
   },
   {
@@ -33,7 +33,7 @@ const fallbackNews: NewsItem[] = [
     slug: 'cultural-festival-2025',
     category: 'Arts & Culture',
     publishedAt: '2025-11-02T00:00:00Z',
-    excerpt: "This year's cultural festival saw participation from all 1,200 learners, showcasing the rich diversity of our school community.",
+    excerpt: "This year's cultural festival saw participation from our 921 learners, showcasing the rich diversity of our school community.",
     imageUrl: 'https://images.unsplash.com/photo-1607453998774-d533f65dac99?q=80&w=800',
   },
   {

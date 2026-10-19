@@ -22,13 +22,13 @@ export default function Hero() {
         className="absolute inset-0 z-0"
         style={{ y, scale }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-[#172b66]/50 to-[#172b66] z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-[#172b66]/40 to-[#172b66] z-10" />
         <Image
-          src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop"
-          alt="Villiersdorp Secondary School campus"
+          src="/hero-staff.png"
+          alt="Villiersdorp Secondary School staff in front of the school"
           fill
           priority
-          className="object-cover opacity-50"
+          className="object-cover object-[center_65%] opacity-75"
           sizes="100vw"
         />
         {/* Noise overlay */}
@@ -42,42 +42,40 @@ export default function Hero() {
       >
         {/* Eyebrow */}
         <div className="overflow-hidden mb-6">
-          <motion.p
-            className="text-[#fd1b3d] tracking-[0.4em] uppercase text-xs md:text-sm font-medium"
+          <motion.h1
+            className="inline-block bg-[#fd1b3d] text-white rounded-full px-4 py-1.5 text-sm md:text-base font-bold"
             initial={{ y: 60, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.8, ease: 'easeOut' }}
           >
-            Excellence in the Heart of the Overberg
-          </motion.p>
+            Welkom by Villiersdorp Sekondêr
+          </motion.h1>
         </div>
 
         {/* Main heading */}
         <div className="overflow-hidden mb-8">
-          <motion.h1
-            className="text-5xl md:text-7xl lg:text-[7rem] font-serif text-white leading-[1.05] tracking-tight"
+          <motion.p
+            className="text-5xl md:text-7xl lg:text-[6.5rem] font-serif font-extrabold text-white leading-[1.05] tracking-tight drop-shadow-lg"
             initial={{ y: 160 }}
             animate={{ y: 0 }}
             transition={{ delay: 0.55, duration: 1, ease: [0.76, 0, 0.24, 1] }}
           >
-            A Legacy of
+            Where Every Learner
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fd1b3d] to-[#F8DFE7]">
-              Brilliance.
-            </span>
-          </motion.h1>
+            <span className="text-[#fd1b3d]">Can Shine!</span>
+          </motion.p>
         </div>
 
         {/* Subline */}
         <div className="overflow-hidden mb-10">
           <motion.p
-            className="text-white/60 text-base md:text-lg font-light max-w-2xl mx-auto"
+            className="text-white/85 text-lg md:text-xl max-w-2xl mx-auto drop-shadow"
             initial={{ y: 60, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.9, duration: 0.8, ease: 'easeOut' }}
           >
-            Shaping confident, critical thinkers who lead with integrity — rooted
-            in the Western Cape community, reaching for the world.
+            A proud Villiersdorp high school for Grades 8–12, where learners grow
+            in the classroom, on the sports field and in the community.
           </motion.p>
         </div>
 

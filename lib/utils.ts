@@ -21,8 +21,18 @@ export function truncate(text: string, maxLength: number): string {
   return text.slice(0, maxLength).trimEnd() + '…';
 }
 
+/**
+ * Canonical site origin. Set NEXT_PUBLIC_SITE_URL to the live domain in production;
+ * on Vercel it falls back to the project's production domain.
+ */
+export const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : 'http://localhost:3000')
+).replace(/\/$/, '');
+
 /** Get absolute URL for Open Graph meta */
 export function absoluteUrl(path: string): string {
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
-  return `${base}${path}`;
+  return `${siteUrl}${path}`;
 }

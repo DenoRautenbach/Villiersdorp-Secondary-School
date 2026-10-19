@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, Suspense } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import Hero from '@/components/home/Hero';
 import Stats from '@/components/home/Stats';
@@ -21,19 +21,13 @@ export default function HomePage() {
         {loading && <Preloader onComplete={() => setLoading(false)} />}
       </AnimatePresence>
 
-      {!loading && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-        >
-          <Hero />
-          <Stats />
-          <AboutPreview />
-          <Marquee />
-          <NewsPreview />
-        </motion.div>
-      )}
+      {/* Always rendered so search engines see the content; the full-screen preloader sits on top */}
+      {/* Remount the hero after the preloader so its entrance animation plays */}
+      <Hero key={loading ? 'hero-preload' : 'hero'} />
+      <Stats />
+      <AboutPreview />
+      <Marquee />
+      <NewsPreview />
     </div>
   );
 }

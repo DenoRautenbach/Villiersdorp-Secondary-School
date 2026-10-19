@@ -47,9 +47,9 @@ export default function AboutPreview() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              At Villiersdorp Secondary School, we believe education goes beyond
-              textbooks. We foster critical thinking, creativity, and character
-              deeply rooted in the vibrant community of the Western Cape Overberg.
+              Villiersdorp Secondary School (Villiersdorp Sekondêr) is a public,
+              co-educational high school on Serruriastraat in Villiersdorp, serving
+              learners from Grade 8 to Grade 12 in the Overberg district.
             </motion.p>
 
             <motion.p
@@ -59,9 +59,9 @@ export default function AboutPreview() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.28 }}
             >
-              Our dedicated educators, modern facilities, and holistic programmes
-              give every learner the foundation to thrive — academically, socially,
-              and beyond.
+              As a no-fee school, we believe every learner in our community deserves
+              a quality education. Our 28 educators, led by principal Mr B Ockhuis,
+              help more than 900 learners build their future with pride.
             </motion.p>
 
             <motion.div

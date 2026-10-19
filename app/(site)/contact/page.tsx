@@ -1,30 +1,36 @@
 import type { Metadata } from 'next';
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { MapPin, Mailbox, Phone, Mail, Clock } from 'lucide-react';
 import ContactForm from '@/components/contact/ContactForm';
 
 export const metadata: Metadata = {
   title: 'Contact Us',
   description:
-    'Get in touch with Villiersdorp Secondary School. Find our address, phone number, email, and office hours.',
+    'Contact Villiersdorp Secondary School (Villiersdorp Sekondêr): Serruriastraat, Villiersdorp, 6848. Tel 028 840 1079. Email villiersec@hotmail.com.',
+  alternates: { canonical: '/contact' },
 };
 
 const contactDetails = [
   {
     icon: MapPin,
-    label: 'Address / Adres',
-    lines: ['Church Street, Villiersdorp,', 'Western Cape, 7170, South Africa'],
+    label: 'Street Address / Straatadres',
+    lines: ['Serruriastraat', 'Villiersdorp, 6848'],
+  },
+  {
+    icon: Mailbox,
+    label: 'Postal Address / Posadres',
+    lines: ['Posbus 347', 'Villiersdorp, 6848'],
   },
   {
     icon: Phone,
     label: 'Telephone / Telefoon',
-    lines: ['+27 28 840 1111'],
-    href: 'tel:+27288401111',
+    lines: ['028 840 1079'],
+    href: 'tel:+27288401079',
   },
   {
     icon: Mail,
     label: 'Email / E-pos',
-    lines: ['info@villiersdorphs.co.za'],
-    href: 'mailto:info@villiersdorphs.co.za',
+    lines: ['villiersec@hotmail.com'],
+    href: 'mailto:villiersec@hotmail.com',
   },
   {
     icon: Clock,
@@ -58,7 +64,7 @@ export default function ContactPage() {
             <div className="space-y-8">
               {contactDetails.map((detail) => (
                 <div key={detail.label} className="flex items-start gap-5">
-                  <div className="w-10 h-10 border border-[#fd1b3d]/40 flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 rounded-full bg-[#fd1b3d]/15 flex items-center justify-center flex-shrink-0">
                     <detail.icon size={16} className="text-[#fd1b3d]" />
                   </div>
                   <div>
@@ -92,7 +98,7 @@ export default function ContactPage() {
             <div className="mt-12 h-64 border border-white/10 relative overflow-hidden">
               <iframe
                 title="Villiersdorp Secondary School location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3327.8!2d19.2833!3d-33.9833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc1d!2sVilliersdorp!5e0!3m2!1sen!2sza!4v1"
+                src="https://maps.google.com/maps?q=-33.986005,19.28128&z=16&output=embed"
                 className="w-full h-full opacity-60 grayscale"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

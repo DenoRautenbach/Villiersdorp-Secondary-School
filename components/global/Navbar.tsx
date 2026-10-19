@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
@@ -9,7 +10,6 @@ const navLinks = [
   { label: 'Home', labelAf: 'Tuis', href: '/' },
   { label: 'About Us', labelAf: 'Oor Ons', href: '/about' },
   { label: 'Academics', labelAf: 'Akademies', href: '/academics' },
-  { label: 'School Life', labelAf: 'Skoollewe', href: '/school-life' },
   { label: 'News', labelAf: 'Nuus', href: '/news' },
   { label: 'Contact', labelAf: 'Kontak', href: '/contact' },
 ];
@@ -33,15 +33,28 @@ export default function Navbar() {
       {/* Main Navbar Bar */}
       <nav
         id="main-navbar"
-        className="fixed top-0 w-full z-50 px-6 md:px-10 py-6 md:py-8 flex justify-between items-center mix-blend-difference"
+        className="fixed top-0 w-full z-50 px-6 md:px-10 py-4 md:py-5 flex justify-between items-center bg-gradient-to-b from-[#0e1c44]/80 to-transparent"
         aria-label="Main navigation"
       >
         <Link
           href="/"
-          className="text-white font-serif text-xl md:text-2xl font-bold tracking-[0.2em] uppercase"
+          className="flex items-center gap-3 text-white"
           aria-label="Villiersdorp Secondary School home"
         >
-          VSS
+          <Image
+            src="/logo-light.png"
+            alt="Villiersdorp Secondary School crest"
+            width={496}
+            height={503}
+            priority
+            className="h-12 md:h-14 w-auto drop-shadow-md"
+          />
+          <span className="font-serif text-lg md:text-xl leading-tight hidden sm:block">
+            Villiersdorp
+            <span className="block text-xs md:text-sm font-semibold text-white/70">
+              Secondary School
+            </span>
+          </span>
         </Link>
 
         <button
@@ -118,7 +131,7 @@ export default function Navbar() {
               transition={{ delay: 0.8 }}
             >
               <span>Villiersdorp, Western Cape</span>
-              <span>Since 1952</span>
+              <span>Grades 8–12</span>
             </motion.div>
           </motion.div>
         )}

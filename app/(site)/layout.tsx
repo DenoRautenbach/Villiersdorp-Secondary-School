@@ -1,45 +1,74 @@
 import type { Metadata } from 'next';
-import { Playfair_Display, Inter } from 'next/font/google';
+import { Poppins, Nunito } from 'next/font/google';
 import Navbar from '@/components/global/Navbar';
 import Footer from '@/components/global/Footer';
 import SmoothScroll from '@/components/global/SmoothScroll';
 import SchemaOrg from '@/components/global/SchemaOrg';
 import CursorWrapper from '@/components/global/CursorWrapper';
+import { siteUrl } from '@/lib/utils';
 import '@/app/globals.css';
 
-const playfair = Playfair_Display({
+const poppins = Poppins({
   subsets: ['latin'],
-  weight: ['400', '600', '700'],
+  weight: ['500', '600', '700', '800'],
   style: ['normal', 'italic'],
-  variable: '--font-playfair',
+  variable: '--font-heading',
   display: 'swap',
 });
 
-const inter = Inter({
+const nunito = Nunito({
   subsets: ['latin'],
-  weight: ['300', '400', '500'],
-  variable: '--font-inter',
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-body',
   display: 'swap',
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'),
+  metadataBase: new URL(siteUrl),
   title: {
-    default: 'Villiersdorp Secondary School',
+    default: 'Villiersdorp Secondary School | Villiersdorp Sekondêr',
     template: '%s | Villiersdorp Secondary School',
   },
   description:
-    'Villiersdorp Secondary School — cultivating academic excellence, character, and community pride in the heart of the Western Cape Overberg.',
-  keywords: ['Villiersdorp', 'Secondary School', 'Western Cape', 'Matric', 'Overberg', 'VSS'],
+    'Villiersdorp Secondary School (Villiersdorp Sekondêr) is the high school in Villiersdorp, Western Cape, for Grades 8–12. Serruriastraat, Villiersdorp, 6848.',
+  keywords: [
+    'Villiersdorp',
+    'Villiersdorp Secondary School',
+    'Villiersdorp Sekondêr',
+    'Villiersdorp high school',
+    'hoërskool Villiersdorp',
+    'skool Villiersdorp',
+    'Overberg',
+    'Western Cape',
+    'Matric',
+  ],
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_ZA',
-    url: process.env.NEXT_PUBLIC_SITE_URL,
+    alternateLocale: ['af_ZA'],
+    url: '/',
     siteName: 'Villiersdorp Secondary School',
+    title: 'Villiersdorp Secondary School | Villiersdorp Sekondêr',
+    description: 'The high school in Villiersdorp, Western Cape, for Grades 8–12.',
+    images: [
+      { url: '/hero-staff.png', width: 854, height: 854, alt: 'Villiersdorp Secondary School staff' },
+      { url: '/logo.png', width: 496, height: 503, alt: 'Villiersdorp Secondary School crest' },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1 },
+  },
+  ...(process.env.GOOGLE_SITE_VERIFICATION && {
+    verification: { google: process.env.GOOGLE_SITE_VERIFICATION },
+  }),
 };
 
 export default function SiteLayout({
@@ -48,11 +77,11 @@ export default function SiteLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
+    <html lang="en-ZA" className={`${poppins.variable} ${nunito.variable}`} suppressHydrationWarning>
       <head>
         <SchemaOrg />
       </head>
-      <body style={{ fontFamily: 'var(--font-inter, Inter, system-ui, sans-serif)' }}>
+      <body suppressHydrationWarning>
         <CursorWrapper />
         <SmoothScroll>
           <Navbar />

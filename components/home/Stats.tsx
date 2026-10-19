@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { GraduationCap, BookOpen, Users, Trophy } from 'lucide-react';
+import { GraduationCap, School, Users, Wallet } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 interface StatItem {
@@ -13,10 +13,10 @@ interface StatItem {
 }
 
 const stats: StatItem[] = [
-  { icon: GraduationCap, value: '98%', label: 'Matric Pass Rate', labelAf: 'Matriekslaagkoers' },
-  { icon: BookOpen, value: '45+', label: 'Academic Subjects', labelAf: 'Akademiese Vakke' },
-  { icon: Users, value: '1,200', label: 'Enrolled Students', labelAf: 'Ingeskryfde Leerders' },
-  { icon: Trophy, value: '15', label: 'Provincial Awards', labelAf: 'Provinsiale Toekennings' },
+  { icon: Users, value: '921', label: 'Learners', labelAf: 'Leerders' },
+  { icon: GraduationCap, value: '28', label: 'Educators', labelAf: 'Opvoeders' },
+  { icon: School, value: '8–12', label: 'Grades', labelAf: 'Grade' },
+  { icon: Wallet, value: 'R0', label: 'School Fees (No-fee School)', labelAf: 'Skoolgeld' },
 ];
 
 function StatCard({ item, index }: { item: StatItem; index: number }) {
