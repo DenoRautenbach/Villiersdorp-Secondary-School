@@ -4,10 +4,10 @@ import { siteUrl } from '@/lib/utils';
  * JSON-LD Structured Data for Villiersdorp Secondary School
  * Inject this in the root layout's <head> via next/script.
  */
-export default function SchemaOrgScript() {
-  const jsonLd = {
+export default function SchemaOrgScript({ customSchema }: { customSchema?: object | object[] }) {
+  const defaultSchema = {
     '@context': 'https://schema.org',
-    '@type': 'HighSchool',
+    '@type': ['HighSchool', 'EducationalOrganization', 'LocalBusiness'],
     name: 'Villiersdorp Secondary School',
     alternateName: ['VSS', 'Villiersdorp Sekondêr'],
     url: siteUrl,
@@ -59,10 +59,14 @@ export default function SchemaOrgScript() {
     ],
   };
 
+  const schemas = customSchema 
+    ? (Array.isArray(customSchema) ? [defaultSchema, ...customSchema] : [defaultSchema, customSchema])
+    : [defaultSchema];
+
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
     />
   );
 }
