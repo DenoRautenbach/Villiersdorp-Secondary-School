@@ -63,6 +63,35 @@ export default defineType({
       description: 'Pin this article to the top of the homepage news section',
       initialValue: false,
     }),
+    defineField({
+      name: 'hidden',
+      title: 'Hide from Website',
+      type: 'boolean',
+      description: 'Hide this item without deleting it. Use this for imported Facebook posts — deleted ones are re-imported.',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'source',
+      title: 'Source',
+      type: 'string',
+      options: { list: ['manual', 'facebook'] },
+      initialValue: 'manual',
+      readOnly: true,
+    }),
+    defineField({
+      name: 'facebookUrl',
+      title: 'Facebook Post',
+      type: 'url',
+      readOnly: true,
+      hidden: ({ document }) => document?.source !== 'facebook',
+    }),
+    defineField({
+      name: 'facebookPostId',
+      title: 'Facebook Post ID',
+      type: 'string',
+      readOnly: true,
+      hidden: true,
+    }),
   ],
   preview: {
     select: {

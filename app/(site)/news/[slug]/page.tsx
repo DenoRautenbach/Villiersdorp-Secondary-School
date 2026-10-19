@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ExternalLink } from 'lucide-react';
+import { PortableText, type PortableTextBlock } from 'next-sanity';
 import { client } from '@/lib/sanity/client';
 import { NEWS_BY_SLUG_QUERY, ALL_NEWS_SLUGS_QUERY } from '@/lib/sanity/queries';
 import { formatDate } from '@/lib/utils';
@@ -15,6 +16,8 @@ interface NewsArticle {
   publishedAt: string;
   excerpt: string;
   imageUrl: string | null;
+  body: PortableTextBlock[] | null;
+  facebookUrl: string | null;
   author: { name: string; role: string; photoUrl: string | null } | null;
 }
 
@@ -134,9 +137,22 @@ export default async function NewsArticlePage({ params }: Props) {
           </div>
         )}
 
-        <p className="text-white/50 text-sm">
-          Full article content will render here once connected to Sanity CMS.
-        </p>
+        {article.body?.length ? (
+          <div className="space-y-5 text-white/80 text-lg leading-relaxed [&_h2]:font-serif [&_h2]:text-3xl [&_h2]:text-white [&_h3]:font-serif [&_h3]:text-2xl [&_h3]:text-white [&_a]:text-[#fd1b3d] [&_a]:underline [&_ul]:list-disc [&_ol]:list-decimal [&_ul]:pl-6 [&_ol]:pl-6 [&_blockquote]:border-l-2 [&_blockquote]:border-[#fd1b3d] [&_blockquote]:pl-6 [&_blockquote]:italic">
+            <PortableText value={article.body} />
+          </div>
+        ) : null}
+
+        {article.facebookUrl && (
+          <a
+            href={article.facebookUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-12 inline-flex items-center gap-2 text-[#fd1b3d] hover:opacity-70 transition-opacity"
+          >
+            View this post on Facebook <ExternalLink size={14} />
+          </a>
+        )}
       </article>
     </div>
   );
